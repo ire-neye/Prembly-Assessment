@@ -18,11 +18,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Navigate to ui-tests directory
-        run: cd ui-tests
-
       - name: Install dependencies
         run: npm install
+        working-directory: ./ui-tests
 
       - name: Run Cypress UI tests
         run: npm run test:cypress
+        working-directory: ./ui-tests
