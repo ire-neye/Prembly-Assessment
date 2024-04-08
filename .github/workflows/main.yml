@@ -1,4 +1,4 @@
-name: Cypress Tests
+name: Cypress Tests without Docker
 
 on:
   push:
@@ -9,34 +9,42 @@ on:
       - main
 
 jobs:
-  ui-tests:
+  setup-and-test:
     runs-on: ubuntu-latest
-    container:
-      image: cypress/browsers:node16.13.0-chrome96-ff94
+
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Install UI Dependencies
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16' # Specify the Node.js version you need
+
+      - name: Install UI Test Dependencies
         run: npm install
         working-directory: ./ui-tests
 
       - name: Run Cypress UI Tests
-        run: npx cypress run
+        run: npx cypress install && npx cypress run
         working-directory: ./ui-tests
+        env:
+          CI: true # Sets the CI environment variable which Cypress uses to determine batch behavior
 
-  api-tests:
-    runs-on: ubuntu-latest
-    container:
-      image: cypress/browsers:node16.13.0-chrome96-ff94
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Install API Dependencies
+      - name: Install API Test Dependencies
         run: npm install
         working-directory: ./api-tests
 
       - name: Run Cypress API Tests
-        run: npx cypress run
+        run: npx cypress install && npx cypress run
         working-directory: ./api-tests
+        env:
+          CI: true # Similarly, sets the CI environment variable for Cypress
+
+      - name: Cache Cypress binary
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/Cypress
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-cypress-
