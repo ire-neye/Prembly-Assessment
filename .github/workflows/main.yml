@@ -1,4 +1,4 @@
-name: Combined API and UI Tests
+name: Cypress Tests
 
 on:
   push:
@@ -9,30 +9,17 @@ on:
       - main
 
 jobs:
-  api-test:
+  build:
     runs-on: ubuntu-latest
-    container:
-      image: node:14
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Install dependencies
-        run: npm install
-      - name: Run API tests
-        run: npm run test:api
-        working-directory: ./api-test
-
-  ui-test:
-    runs-on: ubuntu-latest
-    needs: api-test
     container:
       image: cypress/included:8.7.0
       options: --privileged
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+
       - name: Install dependencies
         run: npm install
-      - name: Run UI tests
-        run: npm run test:ui
-        working-directory: ./ui-test
+
+      - name: Run Cypress tests
+        run: npm run test:cypress
