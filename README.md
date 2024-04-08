@@ -68,9 +68,11 @@ Test reports, screenshots, videos, and JUnit XML outputs will be saved in the Cy
 **Let me know if you want to include more specific details or instructions in your README!**
 
 ## Running Tests in CI/CD
+This project is configured to run automated tests through GitHub Actions. Here's how to find the test results:
+  - Go to the "Actions" Tab
+  - Click on the workflow name.
+  - You'll see a list of workflow runs. Click on the most recent run.
 
-This project is configured to run automated tests through GitLab CI/CD. To view the test results:
-
-- Go to your project on GitLab.
-- Click on "CI/CD" -> "Pipelines".
-- Click on a specific pipeline to view test results and download artifacts such as screenshots, videos, and test reports.
+  - Explore Jobs and Artifacts:
+  - Within the run, you'll see individual jobs (e.g., "API Tests," "UI Tests"). Click on a job to see its logs and potential test results.
+  - Look for an "Artifacts" section at the bottom of the workflow run page. Here you may find screenshots, videos, and test reports.
