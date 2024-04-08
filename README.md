@@ -1,7 +1,3 @@
-gitHere's your README file tailored for the provided `public_apis.cy.js`, `ui-tests.cy.js`, and `.gitlab-ci.yml` file.
-
-**README.md**
-
 **Project Overview**
 
 This project contains automated end-to-end (E2E) tests for both an API and a web user interface using Cypress.
