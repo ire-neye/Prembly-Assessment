@@ -1,4 +1,4 @@
-name: Full Test Suite
+name: Cypress Tests
 
 on:
   push:
@@ -12,32 +12,31 @@ jobs:
   ui-tests:
     runs-on: ubuntu-latest
     container:
-      image: cypress/included:8.7.0
-      options: --privileged
+      image: cypress/browsers:node16.13.0-chrome96-ff94
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install UI dependencies
+      - name: Install UI Dependencies
         run: npm install
         working-directory: ./ui-tests
 
-      - name: Run Cypress UI tests
-        run: npm run test:cypress
+      - name: Run Cypress UI Tests
+        run: npx cypress run
         working-directory: ./ui-tests
 
   api-tests:
     runs-on: ubuntu-latest
     container:
-      image: node:14 # Using Node.js container, adjust the version as needed
+      image: cypress/browsers:node16.13.0-chrome96-ff94
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install API dependencies
+      - name: Install API Dependencies
         run: npm install
         working-directory: ./api-tests
 
-      - name: Run API tests
-        run: npm run test:api # Make sure this script is defined in your package.json
+      - name: Run Cypress API Tests
+        run: npx cypress run
         working-directory: ./api-tests
