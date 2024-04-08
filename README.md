@@ -17,7 +17,7 @@ This project contains automated end-to-end (E2E) tests for both an API and a web
 
 1. **Clone the repository:**
    ```bash
-   git clone this repo
+   git clone https://github.com/ire-neye/Prembly-Assessment.git
 
    ```
 2. **Install dependencies:**
