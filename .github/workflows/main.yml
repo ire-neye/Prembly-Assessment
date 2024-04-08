@@ -1,4 +1,4 @@
-name: UI Tests
+name: Cypress UI Tests
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  ui-tests:
+  cypress-ui-tests:
     runs-on: ubuntu-latest
     container:
       image: cypress/included:8.7.0
@@ -21,6 +21,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run UI tests
+      - name: Run Cypress UI tests
         working-directory: ui-tests
         run: npm run test:cypress
