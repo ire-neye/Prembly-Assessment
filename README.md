@@ -48,13 +48,8 @@ Test reports, screenshots, videos, and JUnit XML outputs will be saved in the Cy
 
 - `public_apis.cy.js`: Cypress API test suite.
 - `ui-tests.cy.js`: Cypress UI test suite.
-- `.gitlab-ci.yml`: GitLab CI/CD configuration file.
+- `main.yml`: Github CI/CD configuration file.
 - `cypress.json`: Cypress configuration file (optional)
-
-**Additional Notes**
-
-- The GitLab CI/CD pipeline assumes you are using a shared runner provided by GitLab.com.
-- You may need to adapt the `.gitlab-ci.yml` file if you are using self-hosted runners.
 
 **Example Test Scenario**
 
